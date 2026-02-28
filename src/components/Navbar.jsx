@@ -5,7 +5,12 @@ const Navbar = () => {
   const navItems = ['Inicio', 'Habilidades', 'Proyectos', 'Contacto'];
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-uth-dark/95 backdrop-blur-md border-b-2 border-uth-green/30 shadow-hud">
+    <nav className="fixed top-0 w-full z-50 
+    bg-uth-dark/95 
+    backdrop-blur-md 
+    border-b-2 
+    border-uth-green/30 
+    shadow-hud">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo Personal */}
         <div className="flex items-center gap-3 group cursor-pointer">
@@ -28,7 +33,11 @@ const Navbar = () => {
             >
               {item}
               {/* Efecto de subrayado animado verde */}
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-uth-neon transition-all duration-300 group-hover:w-full"></span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 
+              bg-uth-neon 
+              transition-all 
+              duration-300 
+              group-hover:w-full"></span>
             </a>
           ))}
         </div>

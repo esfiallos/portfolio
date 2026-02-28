@@ -13,9 +13,9 @@ const projectsData = [
     status: "Finalizado 2025",
     desc: "API RESTful robusta para gestión de catálogos multimedia. Implementa operaciones CRUD completas, validaciones de backend y consumo dinámico desde React.",
     tech: ["Java Spring Boot", "MySQL", "React"],
-    // Imagen alusiva: Código estilo Matrix/Cyberpunk
     img: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
-    link: "https://github.com/esfiallos/crud-lab_SpingBoot_React"
+    link: "https://github.com/esfiallos/crud-lab_SpingBoot_React",
+    deploy: "https://crud-lab-sping-boot-react.vercel.app/"
   },
   {
     id: 2,
@@ -24,7 +24,6 @@ const projectsData = [
     status: "Finalizado 2025",
     desc: "Aplicación móvil nativa para escaneo y control de inventarios. Incluye base de datos local SQLite y generación de reportes PDF offline.",
     tech: ["Flutter", "Dart", "SQLite"],
-    // Usamos la variable importada arriba
     img: mikiImg,
     link: "https://github.com/esfiallos/proyecto-flutter-app_gestor"
   },
@@ -49,23 +48,32 @@ const projectsData = [
     // Usamos la variable importada arriba
     img: cinemaImg,
     link: "https://github.com/esfiallos/Cinema_Showtime_Proyect"
+  },
+{
+    id: 5,
+    title: "Legacy Wallet (IBM AS400)",
+    type: "Web App / Full-Stack",
+    status: "En Desarrollo",
+    desc: "Aplicación que conecta un frontend en React con un backend en Java Spring Boot integrado a un sistema IBM AS400. Actualmente permite la lectura de datos reflejados en una interfaz de tarjetas.",
+    tech: ["React", "Java Spring Boot", "IBM AS400"],
+    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+    link: "https://github.com/esfiallos/walletWithAS400",
+    deploy: "https://wallet-with-as-400.vercel.app/"
   }
 ];
 
-const ProjectCard = ({ project }) => (
-  <div className="bg-uth-surface border border-gray-800 rounded-lg overflow-hidden hover:border-uth-green transition-all duration-300 group relative shadow-lg flex flex-col h-full hover:shadow-neon-hover">
-    
+const ProjectCard = ({ project, lang }) => (
+    <div className="bg-uth-surface border border-gray-800 rounded-lg overflow-hidden hover:border-uth-green transition-all duration-300 group relative shadow-lg flex flex-col h-full hover:shadow-neon-hover">    
     {/* Imagen con Overlay Técnico */}
     <div className="h-48 overflow-hidden relative border-b border-gray-800 bg-black">
-      {/* Ajustamos object-cover a object-contain si es un logo para que no se corte, 
-          o mantenemos cover si queremos que llene todo el espacio */}
+    
       <img 
         src={project.img} 
         alt={project.title} 
         className={`w-full h-full ${project.id === 2 || project.id === 4 ? 'object-contain p-4' : 'object-cover'} opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500`} 
       />
       
-      {/* Degradado solo para las imágenes que no son logos puros */}
+     
       {(project.id !== 2 && project.id !== 4) && (
          <div className="absolute inset-0 bg-gradient-to-t from-uth-surface via-transparent to-transparent"></div>
       )}
@@ -90,14 +98,33 @@ const ProjectCard = ({ project }) => (
       <p className="font-nunito text-gray-400 text-sm mb-6 leading-relaxed flex-grow">
         {project.desc}
       </p>
+
+      <div className="flex flex-wrap gap-2 mb-6">
+        <span className="px-3 py-1 
+            bg-uth-blue/20 
+            text-blue-200 text-xs 
+            rounded 
+            font-code border border-uth-blue/30 
+            hover:bg-uth-green hover:text-uth-dark 
+            hover:border-uth-green hover:font-bold 
+            transition-all cursor-default select-none"
+            >
+              {project.status}
+        </span>
+      </div>
       
-      {/* Tech Stack Tags con HOVER EFFECT */}
+      {/* Tech Stack Tags*/}
       <div className="flex flex-wrap gap-2 mb-6">
         {project.tech.map((t, i) => (
           <span 
             key={i} 
-            className="px-3 py-1 bg-uth-blue/20 text-blue-200 text-xs rounded font-code border border-uth-blue/30 
-            hover:bg-uth-green hover:text-uth-dark hover:border-uth-green hover:font-bold 
+            className="px-3 py-1 
+            bg-uth-blue/20 
+            text-blue-200 text-xs 
+            rounded 
+            font-code border border-uth-blue/30 
+            hover:bg-uth-green hover:text-uth-dark 
+            hover:border-uth-green hover:font-bold 
             transition-all cursor-default select-none"
           >
             {t}
@@ -105,16 +132,48 @@ const ProjectCard = ({ project }) => (
         ))}
       </div>
 
-      {/* Botón Único de GitHub */}
-      <div className="mt-auto">
-        <a 
-          href={project.link} 
+      {/* Botónes*/}
+      <div className="mt-auto flex flex-col gap-3">
+          {/* Botón de despliegue  */}
+          {project.deploy && (
+            <a href={project.deploy} 
+            target="_blank" 
+            rel="noreferrer" 
+            className="w-full 
+            flex items-center 
+            justify-center gap-2 
+            bg-uth-green 
+            text-uth-dark 
+            hover:bg-white 
+            hover:text-black 
+            py-3 
+            rounded 
+            text-sm 
+            font-bold 
+            transition-all 
+            shadow-neon">
+              Live Preview
+            </a>
+          )}
+          
+          <a href={project.link} 
           target="_blank" 
           rel="noreferrer" 
-          className="w-full flex items-center justify-center gap-2 bg-gray-800/50 hover:bg-uth-green hover:text-uth-dark text-gray-300 py-3 rounded text-sm font-bold transition-all border border-gray-700 hover:border-uth-green group-hover:shadow-neon"
-        >
-          <FaGithub className="text-lg" /> Ver Código Fuente
-        </a>
+          className="w-full flex items-center 
+          justify-center gap-2 
+          bg-gray-800/50 
+          hover:bg-uth-green 
+          hover:text-uth-dark 
+          text-gray-300 py-3 
+          rounded text-sm 
+          font-bold 
+          transition-all 
+          border 
+          border-gray-700 
+          hover:border-uth-green 
+          group-hover:shadow-neon">
+            View Source Code
+          </a>
       </div>
     </div>
   </div>
